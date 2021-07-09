@@ -18,6 +18,7 @@ public class RuleGenerator {
         int i = 0;
         while (rules.values().stream().anyMatch(checked -> !checked)) {
             System.out.println(String.format("creating test case %x th", i));
+            i++;
             printNodes(generateTestCase());
             System.out.println("*********************************************");
         }

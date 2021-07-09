@@ -7,18 +7,16 @@ public class Main {
     public static void main(String[] args) {
         NonTerminal A = new NonTerminal("A");
         NonTerminal B = new NonTerminal("B");
-        NonTerminal C = new NonTerminal("C");
 
         Terminal a = new Terminal("a");
         Terminal b = new Terminal("b");
         Terminal c = new Terminal("c");
 
-        Rule rule1 = new Rule(A, new LinkedList<>(Arrays.asList(a, B, b)));
-        Rule rule2 = new Rule(B, new LinkedList<>(Collections.singletonList(C)));
-        Rule rule3 = new Rule(B, new LinkedList<>(Arrays.asList(a,b,c)));
-        Rule rule4 = new Rule(C, new LinkedList<>(Collections.singletonList(B)));
+        Rule rule1 = new Rule(A, new LinkedList<>(Arrays.asList(a, B)));
+        Rule rule2 = new Rule(B, new LinkedList<>(Collections.singletonList(b)));
+        Rule rule3 = new Rule(B, new LinkedList<>(Collections.singletonList(c)));
 
-        LinkedList<Rule> rules = new LinkedList<>(Arrays.asList(rule1, rule2 , rule3, rule4));
+        LinkedList<Rule> rules = new LinkedList<>(Arrays.asList(rule1, rule2 , rule3));
 
         RuleGenerator ruleGenerator = new RuleGenerator(A, rules);
         ruleGenerator.generateTestCasesForCoverage();
