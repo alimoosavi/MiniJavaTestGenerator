@@ -13,7 +13,7 @@ public class Rule {
     public String toString() {
         String rulePresentation = leftSide.name + " -> ";
         for (Node node : rightSide) {
-            rulePresentation += node.toString();
+            rulePresentation += " " + node.toString();
         }
         return rulePresentation;
     }

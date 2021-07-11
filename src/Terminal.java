@@ -1,9 +1,12 @@
-public class Terminal extends Node{
+public class Terminal extends Node {
     String value;
-    Terminal(String value){
+
+    Terminal(String value) {
         this.value = value;
     }
 
     @Override
-    public String toString() {return value;}
+    public String toString() {
+        return '"' + value + '"';
+    }
 }
