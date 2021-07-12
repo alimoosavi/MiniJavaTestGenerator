@@ -29,7 +29,7 @@ public class RuleGenerator {
         str.add(this.start);
 
         while (str.stream().anyMatch(node -> node instanceof NonTerminal)) {
-            printNodes(str);
+//            printNodes(str);
 
             Optional<Node> nonTerminal = str.stream().filter(node -> node instanceof NonTerminal).findFirst();
             Rule rule = this.findRuleByNonTerminal((NonTerminal) nonTerminal.get());
@@ -73,7 +73,7 @@ public class RuleGenerator {
 
     public void printNodes(ArrayList<Node> nodes) {
         for (Node node : nodes) {
-            System.out.print(node);
+            System.out.print(" " + node);
         }
         System.out.println(" ");
     }
