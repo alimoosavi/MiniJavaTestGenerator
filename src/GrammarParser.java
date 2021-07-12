@@ -8,6 +8,7 @@ import java.util.LinkedList;
 public class GrammarParser {
 
     public static String EPS_NAME = "eps";
+    public static String START_NAME = "Goal";
 
     public static Triple<LinkedList<NonTerminal>, LinkedList<Terminal>, LinkedList<Rule>> extractRules(String address)
             throws IOException {
