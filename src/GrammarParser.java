@@ -7,12 +7,21 @@ import java.util.LinkedList;
 
 public class GrammarParser {
 
+    public static String EPS_NAME = "eps";
+
     public static Triple<LinkedList<NonTerminal>, LinkedList<Terminal>, LinkedList<Rule>> extractRules(String address)
             throws IOException {
         Path filePath = Paths.get(address);
         LinkedList<Rule> rules = new LinkedList<>();
         LinkedList<Terminal> terminals = new LinkedList<>();
         LinkedList<NonTerminal> nonTerminals = new LinkedList<>();
+
+        // exceptional eps rule
+        NonTerminal epsNonTerminal = new NonTerminal(EPS_NAME);
+        Rule epsRule = new Rule(epsNonTerminal, new LinkedList<>());
+
+        nonTerminals.add(epsNonTerminal);
+        rules.add(epsRule);
 
         Files.lines(filePath)
                 .map(line -> line.split(" ::= "))
