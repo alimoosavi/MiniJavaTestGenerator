@@ -12,6 +12,6 @@ public class NonTerminal extends Node {
 
     @Override
     public boolean equals(Object object) {
-        return (object instanceof NonTerminal) && (this.name == ((NonTerminal) object).name);
+        return (object instanceof NonTerminal) && (this.name.equals(((NonTerminal) object).name));
     }
 }
