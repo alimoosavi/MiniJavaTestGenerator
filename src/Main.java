@@ -1,25 +1,19 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class Main {
-    public static void main(String[] args) {
-        NonTerminal A = new NonTerminal("A");
-        NonTerminal B = new NonTerminal("B");
+    public static void main(String[] args) throws IOException {
 
-        Terminal a = new Terminal("a");
-        Terminal b = new Terminal("b");
-        Terminal c = new Terminal("c");
 
-        Rule rule1 = new Rule(A, new LinkedList<>(Arrays.asList(a, B)));
-        Rule rule2 = new Rule(B, new LinkedList<>(Collections.singletonList(b)));
-        Rule rule3 = new Rule(B, new LinkedList<>(Collections.singletonList(c)));
+        Triple<LinkedList<NonTerminal>, LinkedList<Terminal>, LinkedList<Rule>> triple =
+                GrammarParser.extractRules("/home/ali/MiniJavaCodeGenerator/src/BNFGrammar.txt");
 
-        LinkedList<Rule> rules = new LinkedList<>(Arrays.asList(rule1, rule2 , rule3));
+        LinkedList<NonTerminal> nonTerminals = triple.getFirst();
+        LinkedList<Terminal> terminals = triple.getSecond();
+        LinkedList<Rule> rules = triple.getThird();
 
-        RuleGenerator ruleGenerator = new RuleGenerator(A, rules);
+        NonTerminal startNonTerminal = nonTerminals.get(1);
+        RuleGenerator ruleGenerator = new RuleGenerator(startNonTerminal, rules);
         ruleGenerator.generateTestCasesForCoverage();
-
     }
 }
