@@ -16,7 +16,7 @@ public class RuleGenerator {
 
     void generateTestCasesForCoverage() {
         int i = 0;
-        while (rules.values().stream().anyMatch(checked -> !checked)) {
+        while (rules.values().stream().anyMatch(checked -> !checked) && i < 20) {
             System.out.println(String.format("creating test case %x th", i));
             i++;
             printNodes(generateTestCase());
@@ -55,7 +55,7 @@ public class RuleGenerator {
     Rule findRuleByNonTerminal(NonTerminal nonTerminal) {
         for (Map.Entry<Rule, Boolean> entry : this.rules.entrySet()) {
             Rule rule = entry.getKey();
-            Boolean hasChecked = entry.getValue();
+            boolean hasChecked = entry.getValue();
 
             if (rule.leftSide.equals(nonTerminal) && !hasChecked) {
                 entry.setValue(true);
@@ -63,12 +63,19 @@ public class RuleGenerator {
             }
         }
 
-        Set<Rule> ruleSet = this.rules.keySet()
+        List<Rule> rules = this.rules.keySet()
                 .stream()
                 .filter(rule -> rule.leftSide.equals(nonTerminal))
-                .collect(Collectors.toSet());
+                .sorted(Comparator.comparingInt(rule -> (int) rule.rightSide.stream()
+                        .filter(node -> node instanceof NonTerminal)
+                        .count()
+                ))
+                .collect(Collectors.toList());
 
-        return (Rule) ruleSet.toArray()[0];
+        Random rand = new Random();
+        int index = rand.nextInt(rules.size());
+        return rules.get(index);
+
     }
 
     public void printNodes(ArrayList<Node> nodes) {

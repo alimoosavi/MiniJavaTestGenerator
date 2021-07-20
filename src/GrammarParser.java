@@ -25,7 +25,7 @@ public class GrammarParser {
         rules.add(epsRule);
 
         Files.lines(filePath)
-                .map(line -> line.split(" ::= "))
+                .map(line -> line.split(" --> "))
                 .forEach(splittedLine -> {
                     String leftSideValue = splittedLine[0];
                     NonTerminal leftSide;
