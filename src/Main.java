@@ -18,7 +18,7 @@ public class Main {
                 .collect(Collectors.toList())
                 .get(0);
 
-        RuleGenerator ruleGenerator = new RuleGenerator(startNonTerminal, rules);
-        ruleGenerator.generateTestCasesForCoverage();
+        Generator generator = new Generator(startNonTerminal, rules);
+        generator.generateTestCasesForCoverage();
     }
 }

@@ -1,11 +1,11 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class RuleGenerator {
+public class Generator {
     private NonTerminal start;
     private HashMap<Rule, Boolean> rules;
 
-    RuleGenerator(NonTerminal start, LinkedList<Rule> ruleLinkedList) {
+    Generator(NonTerminal start, LinkedList<Rule> ruleLinkedList) {
         this.start = start;
         this.rules = new HashMap<>();
 
